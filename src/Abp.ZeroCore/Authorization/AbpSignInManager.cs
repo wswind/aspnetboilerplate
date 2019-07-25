@@ -10,9 +10,7 @@ using Abp.Extensions;
 using Abp.MultiTenancy;
 using Abp.Runtime.Security;
 using Abp.Zero.Configuration;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -37,14 +35,16 @@ namespace Abp.Authorization
             ILogger<SignInManager<TUser>> logger,
             IUnitOfWorkManager unitOfWorkManager,
             ISettingManager settingManager,
-            IAuthenticationSchemeProvider schemes)
+            IAuthenticationSchemeProvider schemes,
+            IUserConfirmation<TUser> userConfirmation)
             : base(
                 userManager,
                 contextAccessor,
                 claimsFactory,
                 optionsAccessor,
                 logger,
-                schemes)
+                schemes,
+                userConfirmation)
         {
             _unitOfWorkManager = unitOfWorkManager;
             _settingManager = settingManager;

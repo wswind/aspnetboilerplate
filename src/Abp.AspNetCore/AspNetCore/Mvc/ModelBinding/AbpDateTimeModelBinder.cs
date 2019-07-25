@@ -14,9 +14,10 @@ namespace Abp.AspNetCore.Mvc.ModelBinding
         public AbpDateTimeModelBinder(Type type)
         {
             _type = type;
-            _simpleTypeModelBinder = new SimpleTypeModelBinder(type);
+            // TODO@3.0 -> Can we use ILoggerFactory here instead of null ?
+            _simpleTypeModelBinder = new SimpleTypeModelBinder(type, null);
         }
-        
+
         public async Task BindModelAsync(ModelBindingContext bindingContext)
         {
             await _simpleTypeModelBinder.BindModelAsync(bindingContext);

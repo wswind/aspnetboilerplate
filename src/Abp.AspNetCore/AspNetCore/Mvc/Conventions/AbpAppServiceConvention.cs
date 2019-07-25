@@ -7,7 +7,6 @@ using Castle.Windsor.MsDependencyInjection;
 using Abp.Reflection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
-using Microsoft.AspNetCore.Mvc.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using System.Reflection;
@@ -119,16 +118,17 @@ namespace Abp.AspNetCore.Mvc.Conventions
 
                 foreach (var actionConstraint in selector.ActionConstraints)
                 {
-                    var httpMethodActionConstraint = actionConstraint as HttpMethodActionConstraint;
-                    if (httpMethodActionConstraint == null)
-                    {
-                        continue;
-                    }
+                    // TODO@3.0 will be available in preview 8
+                    //var httpMethodActionConstraint = actionConstraint as HttpMethodActionConstraint;
+                    //if (httpMethodActionConstraint == null)
+                    //{
+                    //    continue;
+                    //}
 
-                    if (httpMethodActionConstraint.HttpMethods.All(hm => hm.IsIn("GET", "DELETE", "TRACE", "HEAD")))
-                    {
-                        return false;
-                    }
+                    //if (httpMethodActionConstraint.HttpMethods.All(hm => hm.IsIn("GET", "DELETE", "TRACE", "HEAD")))
+                    //{
+                    //    return false;
+                    //}
                 }
             }
 
@@ -226,7 +226,8 @@ namespace Abp.AspNetCore.Mvc.Conventions
                            ? ProxyScriptingHelper.GetConventionalVerbForMethodName(action.ActionName)
                            : ProxyScriptingHelper.DefaultHttpVerb;
 
-            abpServiceSelectorModel.ActionConstraints.Add(new HttpMethodActionConstraint(new[] { verb }));
+            // TODO@3.0 will be available in preview 8
+            //abpServiceSelectorModel.ActionConstraints.Add(new HttpMethodActionConstraint(new[] { verb }));
 
             action.Selectors.Add(abpServiceSelectorModel);
         }
