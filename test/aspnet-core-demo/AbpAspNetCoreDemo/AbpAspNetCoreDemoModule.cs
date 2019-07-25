@@ -12,7 +12,7 @@ using Castle.MicroKernel.Registration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace AbpAspNetCoreDemo
 {
@@ -51,8 +51,8 @@ namespace AbpAspNetCoreDemo
         private static void RegisterDbContextToSqliteInMemoryDb(IIocManager iocManager)
         {
             var builder = new DbContextOptionsBuilder<MyDbContext>();
-
-            builder.ReplaceService<IEntityMaterializerSource, AbpEntityMaterializerSource>();
+            // TODO@3.0
+            //builder.ReplaceService<IEntityMaterializerSource, AbpEntityMaterializerSource>();
 
             var inMemorySqlite = new SqliteConnection("Data Source=:memory:");
             builder.UseSqlite(inMemorySqlite);

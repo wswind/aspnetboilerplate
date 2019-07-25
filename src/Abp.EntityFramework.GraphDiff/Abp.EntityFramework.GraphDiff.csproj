@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="EntityFramework" Version="6.2.0" />
+    <PackageReference Include="EntityFramework" Version="6.3.0-preview7-19363-02" />
     <PackageReference Include="RefactorThis.GraphDiff" Version="3.0.2" />
   </ItemGroup>
 

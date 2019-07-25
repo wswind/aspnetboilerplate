@@ -8,6 +8,7 @@ using System.Reflection;
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Linq;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace Abp.EntityFrameworkCore
 {
@@ -103,7 +104,8 @@ namespace Abp.EntityFrameworkCore
 
         protected virtual void ReplaceServices<TDbContext>(AbpDbContextConfiguration<TDbContext> configuration) where TDbContext : DbContext
         {
-            configuration.DbContextOptions.ReplaceService<IEntityMaterializerSource, AbpEntityMaterializerSource>();
+            // TODO@3.0 uncomment when Microsoft.EntityFrameworkCore package is updated.
+            //configuration.DbContextOptions.ReplaceService<IEntityMaterializerSource, AbpEntityMaterializerSource>();
         }
     }
 }

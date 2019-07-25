@@ -5,7 +5,6 @@ using System.Data;
 using System.Data.Common;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Abp.Collections.Extensions;
@@ -45,7 +44,7 @@ namespace Abp.EntityFrameworkCore.Repositories
         /// <summary>
         /// Gets DbQuery for given entity.
         /// </summary>
-        public virtual DbQuery<TEntity> DbQueryTable => Context.Query<TEntity>();
+        public virtual DbSet<TEntity> DbQueryTable => Context.Set<TEntity>();
 
         private static readonly ConcurrentDictionary<Type, bool> EntityIsDbQuery =
             new ConcurrentDictionary<Type, bool>();
