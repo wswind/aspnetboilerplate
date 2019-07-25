@@ -3,7 +3,7 @@
   <Import Project="..\..\common.props" />
   
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>Abp.EntityFramework</AssemblyName>
     <PackageId>Abp.EntityFramework</PackageId>
@@ -32,8 +32,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="EntityFramework" Version="6.2.0" />
-    <PackageReference Include="EntityFramework.DynamicFilters" Version="3.0.1" />
+    <PackageReference Include="EntityFramework" Version="6.3.0-preview7-19363-02" />
+    <PackageReference Include="EntityFramework.DynamicFilters" Version="3.1.0" />
   </ItemGroup>
 
   <ItemGroup>
