@@ -11,7 +11,7 @@ using Abp.Configuration.Startup;
 using Abp.Dependency;
 using Abp.Reflection.Extensions;
 using Microsoft.Data.Sqlite;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace Abp.EntityFrameworkCore.Tests
 {
@@ -58,7 +58,8 @@ namespace Abp.EntityFrameworkCore.Tests
         {
             var builder = new DbContextOptionsBuilder<BloggingDbContext>();
 
-            builder.ReplaceService<IEntityMaterializerSource, AbpEntityMaterializerSource>();
+            // TODO@3.0
+            //builder.ReplaceService<IEntityMaterializerSource, AbpEntityMaterializerSource>();
 
             var inMemorySqlite = new SqliteConnection("Data Source=:memory:");
             builder.UseSqlite(inMemorySqlite);
@@ -78,7 +79,8 @@ namespace Abp.EntityFrameworkCore.Tests
         {
             var builder = new DbContextOptionsBuilder<SupportDbContext>();
 
-            builder.ReplaceService<IEntityMaterializerSource, AbpEntityMaterializerSource>();
+            // TODO@3.0
+            //builder.ReplaceService<IEntityMaterializerSource, AbpEntityMaterializerSource>();
 
             var inMemorySqlite = new SqliteConnection("Data Source=:memory:");
             builder.UseSqlite(inMemorySqlite);
