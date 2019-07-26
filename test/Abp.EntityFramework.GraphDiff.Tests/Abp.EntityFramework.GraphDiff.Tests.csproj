@@ -25,7 +25,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="EntityFramework" Version="6.3.0-preview7-19363-02" />
-    <PackageReference Include="RefactorThis.GraphDiff" Version="3.0.2" />
+    <PackageReference Include="RefactorThis.GraphDiff" Version="3.1.0" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
