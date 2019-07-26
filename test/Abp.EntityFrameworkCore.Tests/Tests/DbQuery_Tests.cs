@@ -1,6 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Abp.Domain.Repositories;
 using Abp.EntityFrameworkCore.Tests.Domain;
+using Microsoft.EntityFrameworkCore;
 using Shouldly;
 using Xunit;
 
@@ -11,12 +13,15 @@ namespace Abp.EntityFrameworkCore.Tests.Tests
         [Fact]
         public async Task DbQuery_Test()
         {
-            var blogViewRepository = Resolve<IRepository<BlogView>>();
+            await WithUnitOfWorkAsync(async () =>
+             {
+                 var blogViewRepository = Resolve<IRepository<BlogView>>();
 
-            var blogViews = blogViewRepository.GetAllList();
+                 var blogViews = await blogViewRepository.GetAll().AsNoTracking().ToListAsync();
 
-            blogViews.ShouldNotBeNull();
-            blogViews.ShouldContain(x => x.Name == "test-blog-1" && x.Url == "http://testblog1.myblogs.com");
+                 blogViews.ShouldNotBeNull();
+                 blogViews.ShouldContain(x => x.Name == "test-blog-1" && x.Url == "http://testblog1.myblogs.com");
+             });
         }
     }
 }

@@ -261,14 +261,23 @@ namespace Abp.Domain.Repositories
 
         protected virtual Expression<Func<TEntity, bool>> CreateEqualityExpressionForId(TPrimaryKey id)
         {
-            var lambdaParam = Expression.Parameter(typeof(TEntity));
+            //var lambdaParam = Expression.Parameter(typeof(TEntity));
 
-            var leftExpression = Expression.PropertyOrField(lambdaParam, "Id");
+            //var leftExpression = Expression.PropertyOrField(lambdaParam, "Id");
 
-            Expression<Func<object>> closure = () => id;
-            var rightExpression = Expression.Convert(closure.Body, leftExpression.Type);
+            //Expression<Func<object>> closure = () => id;
+            //var rightExpression = Expression.Convert(closure.Body, leftExpression.Type);
 
-            var lambdaBody = Expression.Equal(leftExpression, rightExpression);
+            //var lambdaBody = Expression.Equal(leftExpression, rightExpression);
+
+            //return Expression.Lambda<Func<TEntity, bool>>(lambdaBody, lambdaParam);
+
+            ParameterExpression lambdaParam = Expression.Parameter(typeof(TEntity));
+
+            BinaryExpression lambdaBody = Expression.Equal(
+                Expression.PropertyOrField(lambdaParam, "Id"),
+                Expression.Constant(id, typeof(TPrimaryKey))
+            );
 
             return Expression.Lambda<Func<TEntity, bool>>(lambdaBody, lambdaParam);
         }

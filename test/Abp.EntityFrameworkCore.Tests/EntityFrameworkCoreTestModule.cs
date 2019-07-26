@@ -50,7 +50,7 @@ namespace Abp.EntityFrameworkCore.Tests
         {
             using (var context = IocManager.Resolve<BloggingDbContext>())
             {
-                context.Database.ExecuteSqlCommand("CREATE VIEW BlogView AS SELECT Id, Name, Url FROM Blogs");
+                context.Database.ExecuteSqlCommand("CREATE VIEW vBlogView AS SELECT Id, Name, Url FROM Blogs");
             }
         }
 
