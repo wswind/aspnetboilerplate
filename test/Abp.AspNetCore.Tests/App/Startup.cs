@@ -15,8 +15,9 @@ namespace Abp.AspNetCore.App
     {
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            // TODO@3.0 Should we remove EnableEndpointRouting = false after ASP.NET Core 3.0 release ?
             var mvc = services.AddMvc().AddXmlSerializerFormatters();
-
+            
             mvc.PartManager.ApplicationParts.Add(new AssemblyPart(typeof(AbpAspNetCoreModule).GetAssembly()));
 
             //Configure Abp and Dependency Injection
@@ -32,9 +33,17 @@ namespace Abp.AspNetCore.App
         {
             app.UseAbp(); //Initializes ABP framework.
 
-            app.UseMvc(routes =>
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
             {
-                app.ApplicationServices.GetRequiredService<IAbpAspNetCoreConfiguration>().RouteConfiguration.ConfigureAll(routes);
+                app.ApplicationServices.GetRequiredService<IAbpAspNetCoreConfiguration>().EndpointConfiguration
+                    .ConfigureAllEndpoints(endpoints);
+            });
+
+            app.UseEndpoints(endpoints =>
+            {
+                app.ApplicationServices.GetRequiredService<IAbpAspNetCoreConfiguration>().EndpointConfiguration.ConfigureAllEndpoints(endpoints);
             });
         }
     }

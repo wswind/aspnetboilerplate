@@ -142,12 +142,17 @@ namespace AbpAspNetCoreDemo
             }
 
             app.UseStaticFiles();
+
+            app.UseRouting();
+
             app.UseEmbeddedFiles(); //Allows to expose embedded files to the web!
 
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
-                app.ApplicationServices.GetRequiredService<IAbpAspNetCoreConfiguration>().RouteConfiguration.ConfigureAll(routes);
-                routes.MapODataServiceRoute(app);
+                app.ApplicationServices.GetRequiredService<IAbpAspNetCoreConfiguration>().EndpointConfiguration.ConfigureAllEndpoints(endpoints);
+
+                //TODO@3.0 related: https://github.com/OData/WebApi/issues/1707
+                //routes.MapODataServiceRoute(app); ???
             });
         }
     }

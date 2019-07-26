@@ -30,6 +30,8 @@ namespace Abp.AspNetCore.Configuration
 
         public List<Action<IRouteBuilder>> RouteConfiguration { get; }
 
+        public List<Action<IEndpointRouteBuilder>> EndpointConfiguration { get; }
+
         public AbpAspNetCoreConfiguration()
         {
             DefaultWrapResultAttribute = new WrapResultAttribute();
@@ -38,6 +40,7 @@ namespace Abp.AspNetCore.Configuration
             ControllerAssemblySettings = new ControllerAssemblySettingList();
             FormBodyBindingIgnoredTypes = new List<Type>();
             RouteConfiguration = new List<Action<IRouteBuilder>>();
+            EndpointConfiguration = new List<Action<IEndpointRouteBuilder>>();
             IsValidationEnabledForControllers = true;
             SetNoCacheForAjaxResponses = true;
             IsAuditingEnabled = true;
